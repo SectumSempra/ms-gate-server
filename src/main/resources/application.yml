@@ -1,0 +1,22 @@
+server:
+  port: 10007
+
+spring:
+  application:
+    name: gate-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.6.221.129:10003/eureka
+   
+zuul:
+  routes:
+    app-one-services:
+      path: /app-one-api/**
+      serviceId : app-one-services
+      strip-prefix: false
+    app-two-services:
+      path: /app-two-api/**
+      serviceId : app-two-services
+      strip-prefix: false

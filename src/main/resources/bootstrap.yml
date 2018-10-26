@@ -17,3 +17,7 @@ zuul:
       path: /app-two-api/**
       serviceId : app-two-services
       strip-prefix: false
+##################################
+eureka:
+  instance:
+    instance-id : ${spring.application.name}:${ip}:${spring.profiles.active}:${server.port}       

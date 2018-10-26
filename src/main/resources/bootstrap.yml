@@ -21,3 +21,11 @@ zuul:
 eureka:
   instance:
     instance-id : ${spring.application.name}:${ip}:${spring.profiles.active}:${server.port}       
+##########################
+info:
+  app:
+   name : ${spring.application.name}
+   description: '@project.description@'
+   version: '@project.version@'
+   java:
+    version: '@java.version@'

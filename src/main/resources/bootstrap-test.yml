@@ -1,3 +1,4 @@
+## change uri test server url 
 spring:  
   cloud:    
     config:

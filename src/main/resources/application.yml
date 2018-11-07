@@ -1,9 +1,13 @@
 server:
   port: 10007
+  servlet :
+    context-path :
 #########################################################  
 spring:
   application:
     name: gate-server
+  profiles:
+    active: dev
 #########################################################  
 eureka:
   client:
@@ -25,3 +29,8 @@ zuul:
       path: /app-two-api/**
       serviceId : app-two-services
       strip-prefix: false
+#########################################################
+info:
+  application:
+    name : ${spring.application.name}      
+      

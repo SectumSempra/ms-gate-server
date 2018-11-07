@@ -1,0 +1,4 @@
+spring:  
+  cloud:    
+    config:
+      uri: http://10.6.221.129:10010      

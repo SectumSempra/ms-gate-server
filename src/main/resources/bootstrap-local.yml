@@ -1,4 +1,4 @@
 spring:
   cloud: 
     config:
-      uri: http://localhost:10010      
+      uri: ${IP_ME}:10010      

@@ -1,3 +1,5 @@
+IP_ME : http://192.168.1.108
+################################    
 spring:
   application:
     name: gate-server  
@@ -29,3 +31,4 @@ info:
    version: '@project.version@'
    java:
     version: '@java.version@'
+

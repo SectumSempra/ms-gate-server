@@ -2,4 +2,4 @@
 spring:  
   cloud:    
     config:
-      uri: http://10.6.221.129:10011      
+      uri: ${IP_ME}:10011      

@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -17,32 +18,34 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 public class GateServerApplication {
 
+    private static final String ipPrefix = "192.";
+
     public static Map<String, Object> getMap() throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        String ip = getIpAdressBy10();
-        map.put("ip", ip);
-        return map;
+	Map<String, Object> map = new HashMap<>();
+	String ip = getIpAdressBy10();
+	map.put("ip", ip);
+	return map;
 
     }
 
     private static String getIpAdressBy10() throws SocketException {
-        Enumeration e = NetworkInterface.getNetworkInterfaces();
-        while (e.hasMoreElements()) {
-            NetworkInterface n = (NetworkInterface) e.nextElement();
-            Enumeration ee = n.getInetAddresses();
-            while (ee.hasMoreElements()) {
-                InetAddress i = (InetAddress) ee.nextElement();
-                if (i.getHostAddress().startsWith("10."))
-                    return i.getHostAddress();
-            }
-        }
-        return null;
+	Enumeration e = NetworkInterface.getNetworkInterfaces();
+	while (e.hasMoreElements()) {
+	    NetworkInterface n = (NetworkInterface) e.nextElement();
+	    Enumeration ee = n.getInetAddresses();
+	    while (ee.hasMoreElements()) {
+		InetAddress i = (InetAddress) ee.nextElement();
+		if (i.getHostAddress().contains(ipPrefix))
+		    return i.getHostAddress();
+	    }
+	}
+	return null;
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication application = new SpringApplication(GateServerApplication.class);
-        application.setDefaultProperties(getMap());
-        application.run(args);
+	SpringApplication application = new SpringApplication(GateServerApplication.class);
+	application.setDefaultProperties(getMap());
+	application.run(args);
 
     }
 }
